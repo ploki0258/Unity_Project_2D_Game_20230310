@@ -8,7 +8,7 @@ public class PlayerCtrl : MonoBehaviour
     // 在整個專案全域宣告一個instance(讓PlayerCtrl變成單例)
     public static PlayerCtrl instance = null;
 
-    [Header("移動速度")]
+    [Header("移動速度"),Range(1,30)]
     [SerializeField] float speed = 1.5f;
     [Header("最大血量")]
     [SerializeField] float hpMax = 100;
@@ -18,7 +18,7 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] Text hpText = null;
     [Header("時間文字介面")]
     [SerializeField] Text textTime = null;
-
+    [Header("體溫條")]
     [SerializeField] Slider 體力條 = null;
 
     Collider2D tempTarget = null;
@@ -64,9 +64,7 @@ public class PlayerCtrl : MonoBehaviour
             ani.SetBool("向下走", ws < 0);
             ani.SetBool("向右走", ad > 0);
         }
-        */
         //翻轉
-        /*
         if (move.x < 0)
         {
             transform.localScale = new Vector2(-1, 1);
