@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    // 在整個專案全域宣告一個instance(讓PlayerCtrl變成單例)
-    public static PlayerCtrl instance = null;
-
-    [Header("移動速度"),Range(1,30)]
+    [Header("移動速度"), Range(1, 30)]
     [SerializeField] float speed = 1.5f;
     [Header("最大血量")]
     [SerializeField] float hpMax = 100;
@@ -25,6 +22,9 @@ public class PlayerCtrl : MonoBehaviour
     bool startTimer = false;
     private Rigidbody2D rig = null;
     private Animator ani = null;
+
+    // 在整個專案全域宣告一個instance(讓PlayerCtrl變成單例)
+    public static PlayerCtrl instance = null;
 
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class PlayerCtrl : MonoBehaviour
     }
 
     /// <summary>
-    /// 角色移動：動畫、翻轉
+    /// 移動方法：角色移動、動畫與翻轉
     /// </summary>
     private void Move()
     {
@@ -54,20 +54,26 @@ public class PlayerCtrl : MonoBehaviour
 
         Vector2 move = new Vector2(ad * speed, ws * speed);
         rig.velocity = move;           // 角色移動
-        // transform.Translate(move);  // 角色移動(需在乘上Time.deltaTime)
+        /*transform.Translate(move);  // 角色移動(需在乘上Time.deltaTime)*/
 
         // 角色動畫
-        /*
-        if (move != Vector2.zero)
+        ani.SetBool("runUp", ws > 0);
+        ani.SetBool("runDown", ws < 0);
+        ani.SetBool("runRight", ad != 0);
+
+        // 角色翻轉
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            ani.SetBool("向上走", ws > 0);
-            ani.SetBool("向下走", ws < 0);
-            ani.SetBool("向右走", ad > 0);
+            transform.localScale = new Vector2(-1, 1);  // 左翻
         }
-        //翻轉
-        if (move.x < 0)
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(1, 1);  // 右翻
+        }
+        /*
+        if (move != Vector2.zero && move.x < 0)
+        {
+            transform.localScale = new Vector2(-1, 1);  // 左翻
         }
         */
     }
