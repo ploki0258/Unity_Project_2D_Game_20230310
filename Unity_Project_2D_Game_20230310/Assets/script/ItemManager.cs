@@ -29,7 +29,7 @@ public class ItemManager
     }
 
     /// <summary>
-    /// 找道具資料
+    /// 找道具資料：依照ID尋找
     /// </summary>
     /// <param name="id">道具編號</param>
     /// <returns></returns>
