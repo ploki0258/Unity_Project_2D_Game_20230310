@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   title: "\u9435\u936C"
   icon: {fileID: 21300000, guid: 165ad3ccb103841d99e910d5cc3d93b5, type: 3}
-  info: "\u53EF\u7528\u4F86\u6316\u947F\u51B0\u9762"
+  info: 000000000
   canUse: 1
   Consumables: 0
   regainStr: 0

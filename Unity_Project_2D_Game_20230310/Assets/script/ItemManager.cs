@@ -42,7 +42,7 @@ public class ItemManager
                 return AllItem[i];
             }
         }
-        Debug.Log("ID：" + id + "查無此ID");
+        Debug.LogError("ID：" + id + "查無此ID");
         return new ItemData();
     }
 }

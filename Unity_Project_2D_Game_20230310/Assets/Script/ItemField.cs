@@ -2,10 +2,20 @@ using UnityEngine;
 
 public class ItemField : Windows<ItemField>
 {
+    [SerializeField] GameObject 道具模板 = null;
+    [SerializeField] RectTransform BG = null;
+
     protected override void Awake()
     {
         base.Awake();
         openSpeed = 15f;    // 視窗開啟速度 = 15
+        ItemManager.instance.初始化();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        刷新道具();
     }
 
     protected override void Update()
@@ -39,5 +49,18 @@ public class ItemField : Windows<ItemField>
         base.Close();
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
+    }
+
+    void 刷新道具()
+    {
+        for (int i = 0; i < ItemManager.instance.AllItem.Length; i++)
+        {
+            GameObject tempItem = Instantiate(道具模板, BG);
+            tempItem.SetActive(true);
+            RectTransform UITra = tempItem.GetComponent<RectTransform>();
+
+            UITra.anchoredPosition = new Vector2(UITra.anchoredPosition.x, -20f - (i * 220f));
+        }
+        BG.sizeDelta = new Vector2(BG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
     }
 }
