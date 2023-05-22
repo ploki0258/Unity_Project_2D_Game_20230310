@@ -23,8 +23,8 @@ public class ItemField : Windows<ItemField>
     protected override void Update()
     {
         base.Update();
-        // 按 I 開啟道具欄介面
-        if (Input.GetKeyDown(KeyCode.I))
+        // 按 Tab鍵 開啟道具欄介面
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (isOpen == false)
             {
@@ -57,7 +57,7 @@ public class ItemField : Windows<ItemField>
     {
         // 格子模板本身不顯示
         tempGrid.SetActive(false);
-        // i小於格子數量
+        // i小於格子數量 20
         for (int i = 0; i < 20; i++)
         {
             // 如果i小於玩家持有的道具數量 就顯示道具
@@ -65,7 +65,9 @@ public class ItemField : Windows<ItemField>
             {
                 // 顯示持有道具
                 // 複製一個格子模板 並放進道具欄背景中
-                Instantiate(tempGrid, itemFieldBG);
+                GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
+                剛創建的格子.SetActive(true);
+                剛創建的格子.GetComponent<Grid>().輸入資料(SaveManager.instance.goodsList[i]);
             }
             // 否則顯示空格子
             else

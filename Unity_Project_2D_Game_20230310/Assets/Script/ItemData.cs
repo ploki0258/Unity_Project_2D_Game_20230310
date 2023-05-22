@@ -15,6 +15,7 @@ public class ItemData : ScriptableObject
     [TextArea(5,5)] public string info; // 敘述
     public bool canUse;                 // 是否可使用
     public bool Consumables;            // 使用後是否會消耗
+    public Color category;              // 類別的顏色
 
     // 個別
     // public float regainHp;   // 回血

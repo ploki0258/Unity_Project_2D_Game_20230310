@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 道具管理器
+/// </summary>
 public class ItemManager
 {
     #region 單例

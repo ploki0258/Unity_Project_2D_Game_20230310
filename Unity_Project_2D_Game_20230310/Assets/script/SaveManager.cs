@@ -22,6 +22,7 @@ public class SaveManager
     // 記憶體實際的位置
     static SaveManager _instance = null;
     #endregion
+
     [Header("最大持有道具數量")]
     [SerializeField] int itemNumberMax = 999;
 
