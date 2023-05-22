@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class ItemField : Windows<ItemField>
 {
-    [SerializeField] GameObject 道具模板 = null;
-    [SerializeField] RectTransform BG = null;
+    [Header("格子模板")]
+    [SerializeField] GameObject tempGrid = null;
+    [Header("道具欄背景")]
+    [SerializeField] RectTransform itemFieldBG = null;
 
     protected override void Awake()
     {
@@ -15,7 +17,7 @@ public class ItemField : Windows<ItemField>
     protected override void Start()
     {
         base.Start();
-        刷新道具();
+        刷新道具欄();
     }
 
     protected override void Update()
@@ -51,16 +53,25 @@ public class ItemField : Windows<ItemField>
         Time.timeScale = 1f;
     }
 
-    void 刷新道具()
+    void 刷新道具欄()
     {
-        for (int i = 0; i < ItemManager.instance.AllItem.Length; i++)
+        // 格子模板本身不顯示
+        tempGrid.SetActive(false);
+        // i小於格子數量
+        for (int i = 0; i < 20; i++)
         {
-            GameObject tempItem = Instantiate(道具模板, BG);
-            tempItem.SetActive(true);
-            RectTransform UITra = tempItem.GetComponent<RectTransform>();
-
-            UITra.anchoredPosition = new Vector2(UITra.anchoredPosition.x, -20f - (i * 220f));
+            // 如果i小於玩家持有的道具數量 就顯示道具
+            if (i < SaveManager.instance.goodsList.Count)
+            {
+                // 顯示持有道具
+                // 複製一個格子模板 並放進道具欄背景中
+                Instantiate(tempGrid, itemFieldBG);
+            }
+            // 否則顯示空格子
+            else
+            {
+                
+            }
         }
-        BG.sizeDelta = new Vector2(BG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
     }
 }
