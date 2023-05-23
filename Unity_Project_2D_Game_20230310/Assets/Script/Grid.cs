@@ -10,15 +10,33 @@ public class Grid : MonoBehaviour
     [SerializeField] Text 名稱;
     [SerializeField] Text 描述;
 
+    ItemData dataGrid;
+    bool isNone = true;
+
     public void 輸入資料(SaveManager.Goods data)
     {
-        ItemData 格子 = ItemManager.instance.FindItemData(data.id);
+        isNone = false;
+        dataGrid = ItemManager.instance.FindItemData(data.id);
 
         圖示.transform.localScale = Vector3.one;
-        圖示.sprite = 格子.icon;
-        底色.color = 格子.category;
-        名稱.text = 格子.name;
-        描述.text = 格子.info;
-        數量.text = data.number.ToString();
+        圖示.sprite = dataGrid.icon;
+        底色.color = dataGrid.category;
+        名稱.text = dataGrid.name;
+        描述.text = dataGrid.info;
+        數量.text = "×" + data.number.ToString();
     }
+
+    /*
+    private void OnEnable()
+    {
+        if (isNone == true)
+        {
+            圖示.transform.localScale = Vector3.zero;
+            底色.color = Color.clear;
+            名稱.text = "";
+            描述.text = "";
+            數量.text = "";
+        }
+    }
+    */
 }

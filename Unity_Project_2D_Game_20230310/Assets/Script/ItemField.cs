@@ -52,6 +52,24 @@ public class ItemField : Windows<ItemField>
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
     }
+    /*
+    void 刷新道具欄()
+    {
+        // 根據有幾個道具生成幾個商品
+        for (int i = 0; i < ItemManager.instance.AllItem.Length; i++)
+        {
+            GameObject 剛剛生成的商品 = Instantiate(tempGrid, itemFieldBG);
+            剛剛生成的商品.SetActive(true);
+            RectTransform UI位置 = 剛剛生成的商品.GetComponent<RectTransform>();
+
+            UI位置.anchoredPosition = new Vector2(UI位置.anchoredPosition.x, 20f + (i * 220f));
+
+            剛剛生成的商品.GetComponent<Grid>().輸入資料(SaveManager.instance.goodsList[i]);
+        }
+        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 20f + (ItemManager.instance.AllItem.Length * 22f));
+
+    }
+    */
 
     void 刷新道具欄()
     {
@@ -67,13 +85,17 @@ public class ItemField : Windows<ItemField>
                 // 複製一個格子模板 並放進道具欄背景中
                 GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
                 剛創建的格子.SetActive(true);
+                RectTransform UIPos = 剛創建的格子.GetComponent<RectTransform>();
+                UIPos.anchoredPosition = new Vector2(200f * i, 200f * i);
                 剛創建的格子.GetComponent<Grid>().輸入資料(SaveManager.instance.goodsList[i]);
             }
             // 否則顯示空格子
             else
             {
-                
+                GameObject 剛創建的格子 = Instantiate(tempGrid, itemFieldBG);
+                剛創建的格子.SetActive(true);
             }
         }
+        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 200f + (ItemManager.instance.AllItem.Length * 400f));
     }
 }
