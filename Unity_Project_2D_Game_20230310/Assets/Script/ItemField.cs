@@ -17,7 +17,21 @@ public class ItemField : Windows<ItemField>
     protected override void Start()
     {
         base.Start();
+
+        // 測試用
+        SaveManager.instance.addItem(0);
+        SaveManager.instance.addItem(0);
+        SaveManager.instance.addItem(0);
+        SaveManager.instance.addItem(1);
+
         刷新道具欄();
+
+        SaveManager.instance.Act_goodsChange += 刷新道具欄;
+    }
+
+    private void OnDisable()
+    {
+        SaveManager.instance.Act_goodsChange -= 刷新道具欄;
     }
 
     protected override void Update()

@@ -23,6 +23,27 @@ public class SaveManager
     static SaveManager _instance = null;
     #endregion
 
+    public void Load()
+    {
+        // 從硬碟撈出資料組成PlayerData
+        string json = PlayerPrefs.GetString("PLAYER_DATA", "");
+        // 如果載入的內容是空的 表示要自動生成基礎紀錄
+        if (json == "")
+        {
+            goodsList = new List<Goods>();
+        }
+        else
+        {
+            // 將硬碟中撈出來的json文字轉換成PlayerData格式
+        }
+
+    }
+
+    public void Save()
+    {
+
+    }
+
     [Header("最大持有道具數量")]
     [SerializeField] int itemNumberMax = 999;
 

@@ -1,42 +1,40 @@
-using Unity.VisualScripting;
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Grid : MonoBehaviour
 {
-    [SerializeField] Image ¹Ï¥Ü;
-    [SerializeField] Image ©³¦â;
-    [SerializeField] Text ¼Æ¶q;
-    [SerializeField] Text ¦WºÙ;
-    [SerializeField] Text ´y­z;
+    [SerializeField] Image åœ–ç¤º;
+    [SerializeField] Image åº•è‰²;
+    [SerializeField] Text æ•¸é‡;
+    [SerializeField] Text åç¨±;
+    [SerializeField] Text æè¿°;
 
     ItemData dataGrid;
-    bool isNone = true;
+    bool isNoneGrid = true;
 
-    public void ¿é¤J¸ê®Æ(SaveManager.Goods data)
+    public void è¼¸å…¥è³‡æ–™(SaveManager.Goods data)
     {
-        isNone = false;
+        isNoneGrid = false;
         dataGrid = ItemManager.instance.FindItemData(data.id);
 
-        ¹Ï¥Ü.transform.localScale = Vector3.one;
-        ¹Ï¥Ü.sprite = dataGrid.icon;
-        ©³¦â.color = dataGrid.category;
-        ¦WºÙ.text = dataGrid.name;
-        ´y­z.text = dataGrid.info;
-        ¼Æ¶q.text = "¡Ñ" + data.number.ToString();
+        åœ–ç¤º.transform.localScale = Vector3.one;
+        åœ–ç¤º.sprite = dataGrid.icon;
+        åº•è‰².color = dataGrid.category;
+        åç¨±.text = dataGrid.name;
+        æè¿°.text = dataGrid.info;
+        æ•¸é‡.text = "Ã—" + data.number.ToString();
     }
 
-    /*
     private void OnEnable()
     {
-        if (isNone == true)
+        if (isNoneGrid == true)
         {
-            ¹Ï¥Ü.transform.localScale = Vector3.zero;
-            ©³¦â.color = Color.clear;
-            ¦WºÙ.text = "";
-            ´y­z.text = "";
-            ¼Æ¶q.text = "";
+            åœ–ç¤º.transform.localScale = Vector3.zero;
+            // åº•è‰².color = Color.clear;
+            åç¨±.text = "";
+            æè¿°.text = "";
+            æ•¸é‡.text = "";
         }
     }
-    */
 }
