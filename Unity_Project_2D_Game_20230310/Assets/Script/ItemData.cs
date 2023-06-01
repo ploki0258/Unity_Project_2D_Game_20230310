@@ -23,11 +23,12 @@ public class ItemData : ScriptableObject
     public float regainStr;  // 回體力
 
     // 在 Awake 時設定預設值
-    private void Awake()
+    /*private void Awake()
     {
         title = "未命名";
         info = "無敘述";
         canUse = false;
         Consumables = false;
     }
+    */
 }

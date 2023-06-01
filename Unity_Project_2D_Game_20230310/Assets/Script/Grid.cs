@@ -21,7 +21,7 @@ public class Grid : MonoBehaviour
         圖示.transform.localScale = Vector3.one;
         圖示.sprite = dataGrid.icon;
         底色.color = dataGrid.category;
-        名稱.text = dataGrid.name;
+        名稱.text = dataGrid.title;
         描述.text = dataGrid.info;
         數量.text = "×" + data.number.ToString();
     }
@@ -31,7 +31,7 @@ public class Grid : MonoBehaviour
         if (isNoneGrid == true)
         {
             圖示.transform.localScale = Vector3.zero;
-            // 底色.color = Color.clear;
+            底色.color = Color.black;
             名稱.text = "";
             描述.text = "";
             數量.text = "";
