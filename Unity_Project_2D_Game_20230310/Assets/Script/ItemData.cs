@@ -37,6 +37,7 @@ public class ItemData : ScriptableObject
     // 如果使用者沒有輸入值 則值為預設值
     private void Awake()
     {
+        SaveUserInput();
         if (PlayerPrefs.HasKey("ItemID"))
         {
             // userInput = PlayerPrefs.GetString(PlayerPrefsKey);
@@ -65,7 +66,7 @@ public class ItemData : ScriptableObject
     /// <param name="iconBool">所輸入的圖示</param>
     /// <param name="canUseBool">所輸入可否被使用</param>
     /// <param name="ConsumablesBool">所輸入可否會消耗</param>
-    public void SaveUserInput(int iconBool, int canUseBool, int ConsumablesBool)
+    public void SaveUserInput()
     {
         // userInput = value;
         // PlayerPrefs.SetString(PlayerPrefsKey, userInput);
@@ -74,9 +75,9 @@ public class ItemData : ScriptableObject
         PlayerPrefs.SetInt("ItemID", id);                         // 儲存所輸入的道具ID
         PlayerPrefs.SetString("ItemTitle", title);                // 儲存所輸入的道具標題
         PlayerPrefs.SetString("ItemInfo", info);                  // 儲存所輸入的道具敘述
-        canUseBool = canUse == false ? 0 : 1;                     // 如果 canUse 為 false 轉換為 0 否則就為1
+        int canUseBool = canUse == false ? 0 : 1;                 // 如果 canUse 為 false 轉換為 0 否則就為1
         PlayerPrefs.SetInt("ItemCanUse", canUseBool);             // 儲存所輸入的道具可否使用
-        ConsumablesBool = Consumables == false ? 0 : 1;           // 如果 Consumables 為 false 轉換為 0 否則就為1
+        int ConsumablesBool = Consumables == false ? 0 : 1;       // 如果 Consumables 為 false 轉換為 0 否則就為1
         PlayerPrefs.SetInt("ItemConsumables", ConsumablesBool);   // 儲存所輸入的道具是否會消耗
         PlayerPrefs.SetFloat("ItemRegainStr", regainStr);         // 儲存所輸入的體力恢復值
 

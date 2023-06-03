@@ -18,12 +18,6 @@ public class ItemField : Windows<ItemField>
     {
         base.Start();
 
-        // 測試用
-        SaveManager.instance.addItem(0);
-        SaveManager.instance.addItem(0);
-        SaveManager.instance.addItem(2);
-        SaveManager.instance.addItem(1);
-
         刷新道具欄();
 
         SaveManager.instance.Act_goodsChange += 刷新道具欄;
@@ -110,6 +104,6 @@ public class ItemField : Windows<ItemField>
                 剛創建的格子.SetActive(true);
             }
         }
-        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 200f + (ItemManager.instance.AllItem.Length * 270f));
+        itemFieldBG.sizeDelta = new Vector2(itemFieldBG.sizeDelta.x, 200f + (ItemManager.instance.AllItem.Length * 200f));
     }
 }

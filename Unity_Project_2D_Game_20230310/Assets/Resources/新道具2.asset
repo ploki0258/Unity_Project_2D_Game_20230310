@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: "\u65B0\u9053\u51772"
   m_EditorClassIdentifier: 
   id: 2
-  title: "\u795E\u5947\u9053\u5177"
+  title: "\u672A\u77E5\u7684\u795E\u5947\u9053\u5177"
   icon: {fileID: 21300000, guid: 4a7c015ca161441a8997df9183f8c06f, type: 3}
-  info: "\u9019\u662F\u500B\u795E\u5947\u9053\u5177\uFF0C\u6709\u8457\u672A\u77E5\u6548\u679C\t"
-  canUse: 0
+  info: "\u64C1\u6709\u672A\u77E5\u6548\u679C\u7684\u795E\u5947\u9053\u5177"
+  canUse: 1
   Consumables: 0
-  category: {r: 0, g: 0.5466862, b: 0.68235296, a: 1}
+  category: {r: 0.38689923, g: 0.7410213, b: 0.8301887, a: 1}
   regainStr: 0

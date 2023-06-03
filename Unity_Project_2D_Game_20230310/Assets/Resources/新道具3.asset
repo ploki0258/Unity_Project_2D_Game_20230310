@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c58aca13e6609e45ac209250e8588bc, type: 3}
-  m_Name: "\u9435\u936C1"
+  m_Name: "\u65B0\u9053\u51773"
   m_EditorClassIdentifier: 
-  id: 1
-  title: "\u9435\u936C"
-  icon: {fileID: 21300000, guid: 165ad3ccb103841d99e910d5cc3d93b5, type: 3}
-  info: "\u53EF\u7528\u4F86\u947F\u51B0"
+  id: 3
+  title: "\u93DF\u5B50"
+  icon: {fileID: 21300000, guid: 4d1fc9ae0b91c492b8bd2ad5a4f61632, type: 3}
+  info: "\u53EF\u7528\u4F86\u6316\u571F"
   canUse: 1
   Consumables: 0
   category: {r: 0.7921569, g: 0.77148163, b: 0.2862745, a: 1}
