@@ -1,34 +1,34 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    [Header("²¾°Ê³t«×"), Range(1, 30)]
+    [Header("ç§»å‹•é€Ÿåº¦"), Range(1, 30)]
     [SerializeField] float speed = 1.5f;
-    [Header("³Ì¤j¦å¶q")]
+    [Header("æœ€å¤§è¡€é‡")]
     [SerializeField] float hpMax = 100;
-    [Header("¦å±ø")]
+    [Header("è¡€æ¢")]
     [SerializeField] Image hpBar = null;
-    [Header("¦å¶q¼Æ­È")]
+    [Header("è¡€é‡æ•¸å€¼")]
     [SerializeField] Text hpText = null;
-    [Header("®É¶¡¤å¦r¤¶­±")]
+    [Header("æ™‚é–“æ–‡å­—ä»‹é¢")]
     [SerializeField] Text textTime = null;
-    [Header("Åé·Å±ø")]
-    [SerializeField] Slider Åé¤O±ø = null;
+    [Header("é«”æº«æ¢")]
+    [SerializeField] Slider é«”åŠ›æ¢ = null;
 
     Collider2D tempTarget = null;
     bool startTimer = false;
     private Rigidbody2D rig = null;
     private Animator ani = null;
 
-    // ¦b¾ã­Ó±M®×¥ş°ì«Å§i¤@­Óinstance(ÅıPlayerCtrlÅÜ¦¨³æ¨Ò)
+    // åœ¨æ•´å€‹å°ˆæ¡ˆå…¨åŸŸå®£å‘Šä¸€å€‹instance(è®“PlayerCtrlè®Šæˆå–®ä¾‹)
     public static PlayerCtrl instance = null;
 
     private void Awake()
     {
-        instance = this;    // Åı³æ¨Òµ¥©ó¦Û¤v
+        instance = this;    // è®“å–®ä¾‹ç­‰æ–¼è‡ªå·±
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
     }
@@ -45,72 +45,72 @@ public class PlayerCtrl : MonoBehaviour
     }
 
     /// <summary>
-    /// ²¾°Ê¤èªk¡G¨¤¦â²¾°Ê¡B°Êµe»PÂ½Âà
+    /// ç§»å‹•æ–¹æ³•ï¼šè§’è‰²ç§»å‹•ã€å‹•ç•«èˆ‡ç¿»è½‰
     /// </summary>
     private void Move()
     {
-        float ws = Input.GetAxisRaw("Vertical");    // ««ª½ -1~1
-        float ad = Input.GetAxisRaw("Horizontal");  // ¤ô¥­ -1~1
+        float ws = Input.GetAxisRaw("Vertical");    // å‚ç›´ -1~1
+        float ad = Input.GetAxisRaw("Horizontal");  // æ°´å¹³ -1~1
 
         Vector2 move = new Vector2(ad * speed, ws * speed);
-        rig.velocity = move;           // ¨¤¦â²¾°Ê
-        /*transform.Translate(move);  // ¨¤¦â²¾°Ê(»İ¦b­¼¤WTime.deltaTime)*/
+        rig.velocity = move;           // è§’è‰²ç§»å‹•
+        /*transform.Translate(move);  // è§’è‰²ç§»å‹•(éœ€åœ¨ä¹˜ä¸ŠTime.deltaTime)*/
 
-        // ¨¤¦â°Êµe
+        // è§’è‰²å‹•ç•«
         ani.SetBool("runUp", ws > 0);
         ani.SetBool("runDown", ws < 0);
         ani.SetBool("runRight", ad != 0);
 
-        // ¨¤¦âÂ½Âà
+        // è§’è‰²ç¿»è½‰
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
-            transform.localScale = new Vector2(-1, 1);  // ¥ªÂ½
+            transform.localScale = new Vector2(-1, 1);  // å·¦ç¿»
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
-            transform.localScale = new Vector2(1, 1);  // ¥kÂ½
+            transform.localScale = new Vector2(1, 1);  // å³ç¿»
         }
         /*
         if (move != Vector2.zero && move.x < 0)
         {
-            transform.localScale = new Vector2(-1, 1);  // ¥ªÂ½
+            transform.localScale = new Vector2(-1, 1);  // å·¦ç¿»
         }
         */
     }
 
     /// <summary>
-    /// ¦å¶q±±¨î
+    /// è¡€é‡æ§åˆ¶
     /// </summary>
     float hp
     {
-        get { return hpMax * hpBar.fillAmount; } // Åª¨ú
-        set // ¼g¤J
+        get { return hpMax * hpBar.fillAmount; } // è®€å–
+        set // å¯«å…¥
         {
             _hp = value;
-            hpBar.fillAmount = value / hpMax;   // ¦Ê¤À¤ñ
+            hpBar.fillAmount = value / hpMax;   // ç™¾åˆ†æ¯”
             hpText.text = Mathf.Round(hp) + "/" + hpMax;
-            Åé¤O±ø.value = value / hpMax;
+            é«”åŠ›æ¢.value = value / hpMax;
         }
     }
     float _hp = 0f;
 
     /// <summary>
-    /// ¶Ë®`ºŞ²z¾¹
+    /// å‚·å®³ç®¡ç†å™¨
     /// </summary>
-    /// <param name="hurt">©Ò¨üªº¶Ë®`¶q</param>
+    /// <param name="hurt">æ‰€å—çš„å‚·å®³é‡</param>
     public void TakeDamage(float hurt)
     {
         hp -= hurt;
     }
 
     /// <summary>
-    /// §ó·s®É¶¡¤¶­±
+    /// æ›´æ–°æ™‚é–“ä»‹é¢
     /// </summary>
     private void timer()
     {
         if (tempTarget != null && startTimer == true && hp != 0)
         {
-            textTime.text = "®É¶¡¡G" + Time.time; // ®É¶¡¤å¦r¤¶­± = "®É¶¡¡G" + ¸ü¤J³õ´º®É¶¡(·í¤U¸ü¤J³õ´º¸g¹L¦h¤Ö®É¶¡)
+            textTime.text = "æ™‚é–“ï¼š" + Time.time; // æ™‚é–“æ–‡å­—ä»‹é¢ = "æ™‚é–“ï¼š" + è¼‰å…¥å ´æ™¯æ™‚é–“(ç•¶ä¸‹è¼‰å…¥å ´æ™¯ç¶“éå¤šå°‘æ™‚é–“)
         }
     }
 

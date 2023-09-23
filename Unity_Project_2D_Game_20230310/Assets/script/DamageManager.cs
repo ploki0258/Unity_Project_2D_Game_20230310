@@ -1,12 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class DamageManager : MonoBehaviour
 {
-    [Header("¶Ë®`¶q")]
+    [Header("å‚·å®³é‡"), Tooltip("æ‰€å—åˆ°çš„å‚·å®³å€¼")]
     [SerializeField] float hurt = 1f;
 
-    Collider2D tempTarget = null;   // ¼È¦s2D¸I¼²¾¹
-    bool killPlayer = false;        // ¬O§_¦©ª±®a¥Í©R­È
+    Collider2D tempTarget = null;   // æš«å­˜2Dç¢°æ’å™¨
+    bool killPlayer = false;        // æ˜¯å¦æ‰£ç©å®¶ç”Ÿå‘½å€¼
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

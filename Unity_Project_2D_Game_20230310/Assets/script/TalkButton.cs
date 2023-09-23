@@ -1,47 +1,47 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class TalkButton : MonoBehaviour
 {
-    public GameObject Button;
-    public GameObject talkUI;
-    [SerializeField] ¹ï¸Ü¤å¥» lines;
+    [SerializeField, Header("æç¤ºå°è©±åœ–ç¤º")] public GameObject TipTalkIcon;
+    [SerializeField, Header("è§’è‰²å°è©±æ–‡æœ¬")] å°è©±æ–‡æœ¬ lines;
+    //public GameObject talkUI;
 
-    // ·í ª±®a ¾aªñNPC®É ´NÅã¥Ü¹ï¸Ü´£¥Ü«ö¶s
+    // ç•¶ ç©å®¶ é è¿‘NPCæ™‚ å°±é¡¯ç¤ºå°è©±æç¤ºæŒ‰éˆ•
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(true);     //Åã¥Ü¹ï¸Ü´£¥Ü«ö¶s
+            TipTalkIcon.SetActive(true);     //é¡¯ç¤ºå°è©±æç¤ºæŒ‰éˆ•
         }
     }
 
-    // ·í ª±®a Â÷¶}NPC®É ´NÁôÂÃ¹ï¸Ü´£¥Ü«ö¶s
+    // ç•¶ ç©å®¶ é›¢é–‹NPCæ™‚ å°±éš±è—å°è©±æç¤ºæŒ‰éˆ•
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Button.SetActive(false);    //ÁôÂÃ¹ï¸Ü´£¥Ü«ö¶s
-        }
-    }
-
-    /// <summary>
-    /// Åã¥Ü¹ï¸Ü¤¶­±¡A¨Ã°õ¦æ¶}©l¹ï¸Ü
-    /// </summary>
-    public void HideUI()
-    {
-        if (Button.activeSelf && Input.GetKeyDown(KeyCode.E))
-        {
-            // ¦pªG¤w¸g¶}©l¹ï¸Ü
-            if (DialogSystem.instance.¹ï¸Ü¤¤ == false)
-            {
-                // °õ¦æ¹ï¸Ü¨t²Î¤¤ªº ¶}©l¹ï¸Ü
-                DialogSystem.instance.¶}©l¹ï¸Ü(lines);
-            }
+            TipTalkIcon.SetActive(false);    //éš±è—å°è©±æç¤ºæŒ‰éˆ•
         }
     }
 
     private void Update()
     {
         HideUI();
+    }
+
+    /// <summary>
+    /// é¡¯ç¤ºå°è©±ä»‹é¢ï¼Œä¸¦åŸ·è¡Œé–‹å§‹å°è©±
+    /// </summary>
+    public void HideUI()
+    {
+        if (TipTalkIcon.activeSelf && Input.GetKeyDown(KeyCode.E))
+        {
+            // å¦‚æœå·²ç¶“é–‹å§‹å°è©±
+            if (DialogSystem.instance.å°è©±ä¸­ == false)
+            {
+                // åŸ·è¡Œå°è©±ç³»çµ±ä¸­çš„ é–‹å§‹å°è©±
+                DialogSystem.instance.é–‹å§‹å°è©±(lines);
+            }
+        }
     }
 }

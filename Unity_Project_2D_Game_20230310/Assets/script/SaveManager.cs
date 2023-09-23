@@ -1,40 +1,40 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager
 {
-    #region ³æ¨Ò
+    #region å–®ä¾‹
     public static SaveManager instance
     {
-        // ·í¦³¤H»İ­n§Ú
+        // ç•¶æœ‰äººéœ€è¦æˆ‘
         get
         {
-            // ¦pªG§Ú¤£¦s¦b
+            // å¦‚æœæˆ‘ä¸å­˜åœ¨
             if (_instance == null)
             {
-                // ´N¦Û¤v³Ğ³y¦Û¤v
+                // å°±è‡ªå·±å‰µé€ è‡ªå·±
                 _instance = new SaveManager();
             }
-            // ¦^¶Ç¦Û¤v
+            // å›å‚³è‡ªå·±
             return _instance;
         }
     }
-    // °O¾ĞÅé¹ê»Úªº¦ì¸m
+    // è¨˜æ†¶é«”å¯¦éš›çš„ä½ç½®
     static SaveManager _instance = null;
     #endregion
 
     public void Load()
     {
-        // ±qµwºĞ¼´¥X¸ê®Æ²Õ¦¨PlayerData
+        // å¾ç¡¬ç¢Ÿæ’ˆå‡ºè³‡æ–™çµ„æˆPlayerData
         string json = PlayerPrefs.GetString("PLAYER_DATA", "");
-        // ¦pªG¸ü¤Jªº¤º®e¬OªÅªº ªí¥Ü­n¦Û°Ê¥Í¦¨°òÂ¦¬ö¿ı
+        // å¦‚æœè¼‰å…¥çš„å…§å®¹æ˜¯ç©ºçš„ è¡¨ç¤ºè¦è‡ªå‹•ç”ŸæˆåŸºç¤ç´€éŒ„
         if (json == "")
         {
             goodsList = new List<Goods>();
         }
         else
         {
-            // ±NµwºĞ¤¤¼´¥X¨Óªºjson¤å¦rÂà´«¦¨PlayerData®æ¦¡
+            // å°‡ç¡¬ç¢Ÿä¸­æ’ˆå‡ºä¾†çš„jsonæ–‡å­—è½‰æ›æˆPlayerDataæ ¼å¼
         }
 
     }
@@ -44,94 +44,94 @@ public class SaveManager
 
     }
 
-    [Header("³Ì¤j«ù¦³¹D¨ã¼Æ¶q")]
+    [Header("æœ€å¤§æŒæœ‰é“å…·æ•¸é‡")]
     [SerializeField] int itemNumberMax = 999;
 
-    // «ù¦³ª««~¦Cªí
+    // æŒæœ‰ç‰©å“åˆ—è¡¨
     public List<Goods> goodsList = new List<Goods>();
 
-    // ¹D¨ãµo¥ÍÅÜ¤Æ¡G·s¼W¡B´î¤Ö
+    // é“å…·ç™¼ç”Ÿè®ŠåŒ–ï¼šæ–°å¢ã€æ¸›å°‘
     public System.Action Act_goodsChange;
 
     /// <summary>
-    /// ²K¥[¹D¨ã(By ID)
+    /// æ·»åŠ é“å…·(By ID)
     /// </summary>
-    /// <param name="id">¹D¨ã½s¸¹</param>
+    /// <param name="id">é“å…·ç·¨è™Ÿ</param>
     public bool addItem(int id)
     {
-        // ¦pªG¤w¸g¦³¹D¨ã ´N²Ö­p
+        // å¦‚æœå·²ç¶“æœ‰é“å…· å°±ç´¯è¨ˆ
         if (checkItem(id) > 0)
         {
-            // ±½´y©Ò¦³¹D¨ã
+            // æƒææ‰€æœ‰é“å…·
             for (int i = 0; i < goodsList.Count; i++)
             {
-                // ¦pªG¹J¨ì¬Û¦PIDªº¹D¨ã ¥B¥Ø«e«ù¦³¼Æ¶q <= ³Ì¤j«ù¦³¼Æ¶q ´N¥u³æ¯Â¼W¥[¼Æ¶q
+                // å¦‚æœé‡åˆ°ç›¸åŒIDçš„é“å…· ä¸”ç›®å‰æŒæœ‰æ•¸é‡ <= æœ€å¤§æŒæœ‰æ•¸é‡ å°±åªå–®ç´”å¢åŠ æ•¸é‡
                 if (goodsList[i].id == id && goodsList[i].number <= itemNumberMax)
                 {
-                    Goods temp = goodsList[i];  // ½Æ»s¤@­Ó°}¦C
-                    temp.number++;              // ±N½Æ»sªº°}¦C¶i¦æ­×§ï
-                    goodsList[i] = temp;        // ±N­×§ï«áªº°}¦CÂĞ»\¦^¥h
-                    break;                      // ¤w¦¨¥\§¹¦¨°ïÅ| µ²§ô°j°é
+                    Goods temp = goodsList[i];  // è¤‡è£½ä¸€å€‹é™£åˆ—
+                    temp.number++;              // å°‡è¤‡è£½çš„é™£åˆ—é€²è¡Œä¿®æ”¹
+                    goodsList[i] = temp;        // å°‡ä¿®æ”¹å¾Œçš„é™£åˆ—è¦†è“‹å›å»
+                    break;                      // å·²æˆåŠŸå®Œæˆå †ç–Š çµæŸè¿´åœˆ
                 }
             }
         }
         else
         {
-            // ¦pªG¹D¨ãÄæ¤wº¡ ¥BµLªk°ïÅ|
+            // å¦‚æœé“å…·æ¬„å·²æ»¿ ä¸”ç„¡æ³•å †ç–Š
             if (goodsList.Count == 20)
             {
-                // ¦^¶Ç§_©wªí¥Ü¸Ó¹D¨ã¨Ã¥¼²K¥[ ¥B²K¥[¥¢±Ñ
+                // å›å‚³å¦å®šè¡¨ç¤ºè©²é“å…·ä¸¦æœªæ·»åŠ  ä¸”æ·»åŠ å¤±æ•—
                 return false;
             }
 
-            // ¨S¦³ªF¦è¥i¥H°ïÅ|
-            // ¼W¥[¤@­Ó¹D¨ãÄæ¦ì
+            // æ²’æœ‰æ±è¥¿å¯ä»¥å †ç–Š
+            // å¢åŠ ä¸€å€‹é“å…·æ¬„ä½
             Goods newItem = new Goods();
             newItem.id = id;
             newItem.number = 1;
-            // ¬°°}¦C·s¼W¤@­Ó¤¸¯À
+            // ç‚ºé™£åˆ—æ–°å¢ä¸€å€‹å…ƒç´ 
             goodsList.Add(newItem);
         }
 
-        // µL½×¬O°ïÅ|¹D¨ãÁÙ¬O²K¥[·s¹D¨ãÄæ ³£­n³qª¾§ó·s
+        // ç„¡è«–æ˜¯å †ç–Šé“å…·é‚„æ˜¯æ·»åŠ æ–°é“å…·æ¬„ éƒ½è¦é€šçŸ¥æ›´æ–°
         if (Act_goodsChange != null)
         {
             Act_goodsChange.Invoke();
         }
-        // ¦pªGµ{¦¡°õ¦æ¨ì³Ì«á¨Ã¥¼°±¤î ªí¥Ü¸Ó¹D¨ã¦¨¥\²K¥[
+        // å¦‚æœç¨‹å¼åŸ·è¡Œåˆ°æœ€å¾Œä¸¦æœªåœæ­¢ è¡¨ç¤ºè©²é“å…·æˆåŠŸæ·»åŠ 
         return true;
     }
 
     /// <summary>
-    /// ´î¤Ö¹D¨ã
+    /// æ¸›å°‘é“å…·
     /// </summary>
-    /// <param name="id">¹D¨ã½s¸¹</param>
+    /// <param name="id">é“å…·ç·¨è™Ÿ</param>
     public void removeItem(int id)
     {
         int thisItem = checkItem(id);
 
-        // ¦pªG¹D¨ã¼Æ¶q¦³¨â­Ó©Î¥H¤W®É ¥u»İ´î¤Ö§Y¥i
+        // å¦‚æœé“å…·æ•¸é‡æœ‰å…©å€‹æˆ–ä»¥ä¸Šæ™‚ åªéœ€æ¸›å°‘å³å¯
         if (thisItem >= 2)
         {
             for (int i = 0; i < goodsList.Count; i++)
             {
                 if (goodsList[i].id == id)
                 {
-                    Goods temp = goodsList[i];  // ½Æ»s¤@­Ó°}¦C
-                    temp.number--;              // ±N½Æ»sªº°}¦C¶i¦æ­×§ï
-                    goodsList[i] = temp;        // ±N­×§ï«áªº°}¦CÂĞ»\¦^¥h
-                    break;                      // ¤w¦¨¥\§¹¦¨°ïÅ| µ²§ô°j°é
+                    Goods temp = goodsList[i];  // è¤‡è£½ä¸€å€‹é™£åˆ—
+                    temp.number--;              // å°‡è¤‡è£½çš„é™£åˆ—é€²è¡Œä¿®æ”¹
+                    goodsList[i] = temp;        // å°‡ä¿®æ”¹å¾Œçš„é™£åˆ—è¦†è“‹å›å»
+                    break;                      // å·²æˆåŠŸå®Œæˆå †ç–Š çµæŸè¿´åœˆ
                 }
             }
         }
-        // ¹D¨ã¼Æ¶q¥u³Ñ¤@­Ó®É ´N­n§R°£¾ã­Ó¶µ¥Ø
+        // é“å…·æ•¸é‡åªå‰©ä¸€å€‹æ™‚ å°±è¦åˆªé™¤æ•´å€‹é …ç›®
         else if (thisItem == 1)
         {
             for (int i = 0; i < goodsList.Count; i++)
             {
                 if (goodsList[i].id == id)
                 {
-                    // ²¾°£²ÄI­Ó¶µ¥Ø
+                    // ç§»é™¤ç¬¬Iå€‹é …ç›®
                     goodsList.RemoveAt(i);
                     break;
                 }
@@ -139,10 +139,10 @@ public class SaveManager
         }
         else
         {
-            Debug.LogError("¹Á¸Õ²¾°£¤£¦s¦bªº¹D¨ã");
+            Debug.LogError("å˜—è©¦ç§»é™¤ä¸å­˜åœ¨çš„é“å…·");
         }
 
-        // ³qª¾¹D¨ãÄæµo¥ÍÅÜ¤Æ
+        // é€šçŸ¥é“å…·æ¬„ç™¼ç”Ÿè®ŠåŒ–
         if (Act_goodsChange != null)
         {
             Act_goodsChange.Invoke();
@@ -150,31 +150,31 @@ public class SaveManager
     }
 
     /// <summary>
-    /// ¬d¸ß¹D¨ã¼Æ¶q
+    /// æŸ¥è©¢é“å…·æ•¸é‡
     /// </summary>
-    /// <param name="id">¹D¨ã½s¸¹</param>
+    /// <param name="id">é“å…·ç·¨è™Ÿ</param>
     /// <returns></returns>
     public int checkItem(int id)
     {
         for (int i = 0; i < goodsList.Count; i++)
         {
-            // ¦pªG¹J¨ì¬Û¦PIDªº¹D¨ã
+            // å¦‚æœé‡åˆ°ç›¸åŒIDçš„é“å…·
             if (goodsList[i].id == id)
             {
-                // ´N¦^¶Ç¸Ó¹D¨ãªº¼Æ¶q
+                // å°±å›å‚³è©²é“å…·çš„æ•¸é‡
                 return goodsList[i].number;
             }
         }
         return 0;
-    }
+    }   
+}
 
-    /// <summary>
-    /// «ù¦³ª«
-    /// </summary>
-    [System.Serializable]
-    public struct Goods
-    {
-        [SerializeField] public int id;     // ¦³¤°»ò¼Ëªº¹D¨ã(ID)
-        [SerializeField] public int number; // ¦³´X­Ó³o­Ó¹D¨ã(¼Æ¶q)
-    }
+/// <summary>
+/// æŒæœ‰ç‰©
+/// </summary>
+[System.Serializable]
+public struct Goods
+{
+    [SerializeField] public int id;     // æœ‰ä»€éº¼æ¨£çš„é“å…·(ID)
+    [SerializeField] public int number; // æœ‰å¹¾å€‹é€™å€‹é“å…·(æ•¸é‡)
 }

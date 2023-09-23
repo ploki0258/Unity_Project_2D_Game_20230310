@@ -1,114 +1,118 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// å°è©±ç³»çµ±
+/// </summary>
 public class DialogSystem : MonoBehaviour
 {
-    // ±N DialogSystem ³]©w¬°³æ¨Ò¼Ò¦¡
+    // å°‡ DialogSystem è¨­å®šç‚ºå–®ä¾‹æ¨¡å¼
     public static DialogSystem instance = null;
 
-    [SerializeField] Image ¨¤¦â¹Ï¥Ü_¥ª = null;
-    [SerializeField] Image ¨¤¦â¹Ï¥Ü_¥k = null;
-    [SerializeField] Text ¹ï¸Ü¤H¦W_¥ª = null;
-    [SerializeField] Text ¹ï¸Ü¤H¦W_¥k = null;
-    [SerializeField] Text ¹ï¸Ü¤º®e = null;
-    [SerializeField] Transform Ä~Äò´£¥Ü = null;
-    [SerializeField] ¹ï¸Ü¤å¥» ´ú¸Õ¤å¥» = null;
-    [SerializeField] GameObject Button;
-    [SerializeField] CanvasGroup talkUI;
+    [SerializeField, Header("è§’è‰²åœ–ç¤º å·¦")] Image è§’è‰²åœ–ç¤º_å·¦ = null;
+    [SerializeField, Header("è§’è‰²åœ–ç¤º å³")] Image è§’è‰²åœ–ç¤º_å³ = null;
+    [SerializeField, Header("å°è©±äººå å·¦")] Text å°è©±äººå_å·¦ = null;
+    [SerializeField, Header("å°è©±äººå å³")] Text å°è©±äººå_å³ = null;
+    [SerializeField, Header("å°è©±å…§å®¹")] Text å°è©±å…§å®¹ = null;
+    [SerializeField, Header("æç¤ºç¹¼çºŒåœ–ç¤º")] Transform ç¹¼çºŒæç¤º = null;
+    [SerializeField, Header("å°è©±æ¡†")] CanvasGroup talkUI;
+    //[SerializeField, Header("è§’è‰²å°è©±æ–‡æœ¬")] å°è©±æ–‡æœ¬ æ¸¬è©¦æ–‡æœ¬ = null;
+    //[SerializeField, Header("æç¤ºå°è©±åœ–ç¤º")] GameObject Button;
 
-    ¹ï¸Ü¤å¥» ·í«e¤å¥»;
-    public bool ¹ï¸Ü¤¤ = false;    // ¬O§_¦b¹ï¸Ü
-    bool pressEnter = false;      // ¬O§_«ö¤FÄ~Äò
-    bool wait = false;            // ¬O§_¦bµ¥«İ
+    å°è©±æ–‡æœ¬ ç•¶å‰æ–‡æœ¬;
+    public bool å°è©±ä¸­ = false;    // æ˜¯å¦åœ¨å°è©±
+    bool pressEnter = false;      // æ˜¯å¦æŒ‰äº†ç¹¼çºŒ
+    bool wait = false;            // æ˜¯å¦åœ¨ç­‰å¾…
     
     private void Awake()
     {
-        instance = this;         // Åı³æ¨Òµ¥©ó¦Û¤v
-        talkUI.alpha = 0f;
+        instance = this;    // è®“å–®ä¾‹ç­‰æ–¼è‡ªå·±
+        talkUI.alpha = 0f;  // ä¸€é–‹å§‹éš±è—å°è©±æ¡† Î±å€¼ç‚º0
     }
 
     /// <summary>
-    /// ¶}©l¹ï¸Ü
+    /// é–‹å§‹å°è©±
     /// </summary>
-    /// <param name="¤å¥»">¤å¥»¤º®e</param>
-    public void ¶}©l¹ï¸Ü(¹ï¸Ü¤å¥» ¤å¥»)
+    /// <param name="æ–‡æœ¬">æ–‡æœ¬å…§å®¹</param>
+    public void é–‹å§‹å°è©±(å°è©±æ–‡æœ¬ æ–‡æœ¬)
     {
-        // ¦pªG¥¿¦b¹ï¸Ü´N©¿²¤¦¹©R¥O
-        if (¹ï¸Ü¤¤ == true)
+        // å¦‚æœæ­£åœ¨å°è©±å°±å¿½ç•¥æ­¤å‘½ä»¤
+        if (å°è©±ä¸­ == true)
         {
-            // Debug.Log("¤w¸g¦b¹ï¸Ü¤F");
+            // Debug.Log("å·²ç¶“åœ¨å°è©±äº†");
             return;
         }
-        // ¨ú±o¤å¥»
-        ·í«e¤å¥» = ¤å¥»;
-        // ¶}©l²§¨B°õ¦æ¹ï¸Ü
-        StartCoroutine(¹ï¸Ü());
+        // å–å¾—æ–‡æœ¬ (ç•¶å‰æ–‡æœ¬ ç­‰æ–¼ å‚³å…¥çš„æ–‡æœ¬)
+        ç•¶å‰æ–‡æœ¬ = æ–‡æœ¬;
+        // é–‹å§‹ç•°æ­¥åŸ·è¡Œå°è©±
+        StartCoroutine(å°è©±());
     }
 
-    IEnumerator ¹ï¸Ü()
+    IEnumerator å°è©±()
     {
-        ¹ï¸Ü¤¤ = true;
+        å°è©±ä¸­ = true;
         talkUI.alpha = 1f;
-        // Åã¥Ü¥¿¦b¹ï¸Üªº¨¤¦â¦WºÙ
-        // ¹ï¸Ü¤H¦W.text = ·í«e¤å¥».ªí[0].¨¤¦â¦WºÙ;
-        // Åã¥Ü¥¿¦b¹ï¸Üªº¨¤¦â¹Ï¥Ü
-        // ¦pªG¬O¥ªÃäªº¨¤¦â ´NÅã¥Ü¨¤¦â¹Ï¥Ü¥ª
-        // ¦pªG¬O¥kÃäªº¨¤¦â ´NÅã¥Ü¨¤¦â¹Ï¥Ü¥k
-        // ±ø¥ó ? ¦¨¥ß°µªº¨Æ±¡ : ¤£¦¨¥ß°µªº¨Æ±¡
-        ¨¤¦â¹Ï¥Ü_¥ª.sprite = ·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â ? ·í«e¤å¥».ªí[0].¨¤¦â¹Ï¥Ü¥ª : null;
-        ¨¤¦â¹Ï¥Ü_¥k.sprite = ·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â ? null : ·í«e¤å¥».ªí[0].¨¤¦â¹Ï¥Ü¥k;
+        // é¡¯ç¤ºæ­£åœ¨å°è©±çš„è§’è‰²åç¨±
+        // å°è©±äººå.text = ç•¶å‰æ–‡æœ¬.è¡¨[0].è§’è‰²åç¨±;
+        // é¡¯ç¤ºæ­£åœ¨å°è©±çš„è§’è‰²åœ–ç¤º
+        // å¦‚æœæ˜¯å·¦é‚Šçš„è§’è‰² å°±é¡¯ç¤ºè§’è‰²åœ–ç¤ºå·¦
+        // å¦‚æœæ˜¯å³é‚Šçš„è§’è‰² å°±é¡¯ç¤ºè§’è‰²åœ–ç¤ºå³
+        // æ¢ä»¶ ? æˆç«‹åšçš„äº‹æƒ… : ä¸æˆç«‹åšçš„äº‹æƒ…
+        è§’è‰²åœ–ç¤º_å·¦.sprite = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].å·¦é‚Šè§’è‰² ? ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].è§’è‰²åœ–ç¤º_å·¦ : null;
+        è§’è‰²åœ–ç¤º_å³.sprite = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].å·¦é‚Šè§’è‰² ? null : ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].è§’è‰²åœ–ç¤º_å³;
 
-        // ¨¤¦â¹Ï¥Ü¥ª.transform.localScale = ¦pªG¨¤¦â¹Ï¥Ü¥ª¬° null ´NÁôÂÃ §_«h´NÅã¥Ü
-        // ¨¤¦â¹Ï¥Ü¥k.transform.localScale = ¦pªG¨¤¦â¹Ï¥Ü¥k¬° null ´NÁôÂÃ §_«h´NÅã¥Ü
-        ¨¤¦â¹Ï¥Ü_¥ª.transform.localScale = (¨¤¦â¹Ï¥Ü_¥ª.sprite == null) ? Vector3.zero : Vector3.one;
-        ¨¤¦â¹Ï¥Ü_¥k.transform.localScale = (¨¤¦â¹Ï¥Ü_¥k.sprite == null) ? Vector3.zero : Vector3.one;
-        /*
-        if (·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â == true)
+        // è§’è‰²åœ–ç¤ºå·¦.transform.localScale = å¦‚æœè§’è‰²åœ–ç¤ºå·¦ç‚º null å°±éš±è— å¦å‰‡å°±é¡¯ç¤º
+        // è§’è‰²åœ–ç¤ºå³.transform.localScale = å¦‚æœè§’è‰²åœ–ç¤ºå³ç‚º null å°±éš±è— å¦å‰‡å°±é¡¯ç¤º
+        è§’è‰²åœ–ç¤º_å·¦.transform.localScale = (è§’è‰²åœ–ç¤º_å·¦.sprite == null) ? Vector3.zero : Vector3.one;
+        è§’è‰²åœ–ç¤º_å³.transform.localScale = (è§’è‰²åœ–ç¤º_å³.sprite == null) ? Vector3.zero : Vector3.one;
+		#region æ¸¬è©¦
+		/*
+        if (ç•¶å‰æ–‡æœ¬.è¡¨[0].å·¦é‚Šè§’è‰² == true)
         {
-            ¨¤¦â¹Ï¥Ü_¥ª = ·í«e¤å¥».ªí[0].¨¤¦â¹Ï¥Ü¥ª;
+            è§’è‰²åœ–ç¤º_å·¦ = ç•¶å‰æ–‡æœ¬.è¡¨[0].è§’è‰²åœ–ç¤ºå·¦;
         }
-        else if(·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â == false)
+        else if(ç•¶å‰æ–‡æœ¬.è¡¨[0].å·¦é‚Šè§’è‰² == false)
         {
-            ¨¤¦â¹Ï¥Ü_¥k = ·í«e¤å¥».ªí[0].¨¤¦â¹Ï¥Ü¥k;
+            è§’è‰²åœ–ç¤º_å³ = ç•¶å‰æ–‡æœ¬.è¡¨[0].è§’è‰²åœ–ç¤ºå³;
         }
         */
+		#endregion
 
-        // ¦pªG¬O¥ªÃäªº¤H¦W ´NÅã¥Ü¤H¦W¦b¥ªÃäªº¤å¦r¤è¶ô¤¤ ¦pªG¤£¬O´N¶ñ¤JªÅ¥Õ
-        ¹ï¸Ü¤H¦W_¥ª.text = ·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â ? ·í«e¤å¥».ªí[0].¨¤¦â¦WºÙ : "";
-        ¹ï¸Ü¤H¦W_¥k.text = ·í«e¤å¥».ªí[0].¥ªÃä¨¤¦â ? "" : ·í«e¤å¥».ªí[0].¨¤¦â¦WºÙ;
-        ¹ï¸Ü¤º®e.text = "";
-        Ä~Äò´£¥Ü.localScale = Vector3.zero;
-        //µ¥«İ0.5¬í
+		// å¦‚æœæ˜¯å·¦é‚Šçš„äººå å°±é¡¯ç¤ºäººååœ¨å·¦é‚Šçš„æ–‡å­—æ–¹å¡Šä¸­ å¦‚æœä¸æ˜¯å°±å¡«å…¥ç©ºç™½
+		å°è©±äººå_å·¦.text = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].å·¦é‚Šè§’è‰² ? ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].è§’è‰²åç¨± : "";
+        å°è©±äººå_å³.text = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].å·¦é‚Šè§’è‰² ? "" : ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[0].è§’è‰²åç¨±;
+        å°è©±å…§å®¹.text = "";
+        ç¹¼çºŒæç¤º.localScale = Vector3.zero;
+        //ç­‰å¾…0.5ç§’
         yield return new WaitForSeconds(0.5f);
 
-        // ¹ï¸ÜÁ`ªí
-        for (int j = 0; j < ·í«e¤å¥».ªí.Count; j++)
+        // å°è©±ç¸½è¡¨
+        for (int j = 0; j < ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨.Count; j++)
         {
-            // ¶}©l³o¥y¸Ü¤§«e³]©w¦n¤H¦W¨Ã¥BÃö³¬´£¥Ü
+            // é–‹å§‹é€™å¥è©±ä¹‹å‰è¨­å®šå¥½äººåä¸¦ä¸”é—œé–‰æç¤º
+            è§’è‰²åœ–ç¤º_å·¦.sprite = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].å·¦é‚Šè§’è‰² ? ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].è§’è‰²åœ–ç¤º_å·¦ : null;
+            è§’è‰²åœ–ç¤º_å³.sprite = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].å·¦é‚Šè§’è‰² ? null : ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].è§’è‰²åœ–ç¤º_å³;
 
-            ¨¤¦â¹Ï¥Ü_¥ª.sprite = ·í«e¤å¥».ªí[j].¥ªÃä¨¤¦â ? ·í«e¤å¥».ªí[j].¨¤¦â¹Ï¥Ü¥ª : null;
-            ¨¤¦â¹Ï¥Ü_¥k.sprite = ·í«e¤å¥».ªí[j].¥ªÃä¨¤¦â ? null : ·í«e¤å¥».ªí[j].¨¤¦â¹Ï¥Ü¥k;
+            è§’è‰²åœ–ç¤º_å·¦.transform.localScale = (è§’è‰²åœ–ç¤º_å·¦.sprite == null) ? Vector3.zero : Vector3.one;
+            è§’è‰²åœ–ç¤º_å³.transform.localScale = (è§’è‰²åœ–ç¤º_å³.sprite == null) ? Vector3.zero : Vector3.one;
 
-            ¨¤¦â¹Ï¥Ü_¥ª.transform.localScale = (¨¤¦â¹Ï¥Ü_¥ª.sprite == null) ? Vector3.zero : Vector3.one;
-            ¨¤¦â¹Ï¥Ü_¥k.transform.localScale = (¨¤¦â¹Ï¥Ü_¥k.sprite == null) ? Vector3.zero : Vector3.one;
-
-            ¹ï¸Ü¤H¦W_¥ª.text = ·í«e¤å¥».ªí[j].¥ªÃä¨¤¦â ? ·í«e¤å¥».ªí[j].¨¤¦â¦WºÙ : "";
-            ¹ï¸Ü¤H¦W_¥k.text = ·í«e¤å¥».ªí[j].¥ªÃä¨¤¦â ? "" : ·í«e¤å¥».ªí[j].¨¤¦â¦WºÙ;
-            Ä~Äò´£¥Ü.localScale = Vector3.zero;
-            //³v¨BÅã¥Ü¨C¤@­Ó¦r¨ìµe­±¤W
+            å°è©±äººå_å·¦.text = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].å·¦é‚Šè§’è‰² ? ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].è§’è‰²åç¨± : "";
+            å°è©±äººå_å³.text = ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].å·¦é‚Šè§’è‰² ? "" : ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].è§’è‰²åç¨±;
+            ç¹¼çºŒæç¤º.localScale = Vector3.zero;
+            //é€æ­¥é¡¯ç¤ºæ¯ä¸€å€‹å­—åˆ°ç•«é¢ä¸Š
             string textFinal = "";
-            for (int i = 0; i < ·í«e¤å¥».ªí[j].¤å¥»¤º®e.Length; i++)
+            for (int i = 0; i < ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].æ–‡æœ¬å…§å®¹.Length; i++)
             {
-                // ¦³´X­Ó¦r¶]°O­Ó°j°é
-                textFinal = textFinal + ·í«e¤å¥».ªí[j].¤å¥»¤º®e[i];
-                // Åã¥Ü¨ìµe­±¤W
-                ¹ï¸Ü¤º®e.text = textFinal;
+                // æœ‰å¹¾å€‹å­—è·‘è¨˜å€‹è¿´åœˆ
+                textFinal = textFinal + ç•¶å‰æ–‡æœ¬.å°è©±åˆ—è¡¨[j].æ–‡æœ¬å…§å®¹[i];
+                // é¡¯ç¤ºåˆ°ç•«é¢ä¸Š
+                å°è©±å…§å®¹.text = textFinal;
                 yield return new WaitForSeconds(0.05f);
             }
-            // Åã¥ÜÄ~Äò´£¥Ü Åıª±®a«ö¤FÄ~Äò
-            Ä~Äò´£¥Ü.localScale = Vector3.one;
-            // «ö¤UEnterÄ~Äò¶}©l¤U¬q¹ï¸Ü
+            // é¡¯ç¤ºç¹¼çºŒæç¤º è®“ç©å®¶æŒ‰äº†ç¹¼çºŒ
+            ç¹¼çºŒæç¤º.localScale = Vector3.one;
+            // æŒ‰ä¸‹Enterç¹¼çºŒé–‹å§‹ä¸‹æ®µå°è©±
             wait = true;
             while (pressEnter == false)
             {
@@ -120,12 +124,12 @@ public class DialogSystem : MonoBehaviour
 
         talkUI.alpha = 0f;
         yield return new WaitForSeconds(0.5f);
-        ¹ï¸Ü¤¤ = false;
+        å°è©±ä¸­ = false;
     }
 
     private void Update()
     {
-        // «ö Enter Ä~Äò¤U¬q¹ï¸Ü
+        // æŒ‰ Enter ç¹¼çºŒä¸‹æ®µå°è©±
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && wait == true)
         {
             pressEnter = true;

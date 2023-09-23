@@ -1,40 +1,40 @@
-using Unity.VisualScripting;
+ï»¿using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// ¹D¨ã¨t²Î¡G«Ø¥ß¹D¨ãªº¸ê®Æ®æ¦¡
+/// é“å…·ç³»çµ±ï¼šå»ºç«‹é“å…·çš„è³‡æ–™æ ¼å¼
 /// </summary>
-[CreateAssetMenu(fileName = "·s¹D¨ã", menuName = "«Ø¥ß·s¹D¨ã")]
+[CreateAssetMenu(fileName = "æ–°é“å…·", menuName = "å»ºç«‹æ–°é“å…·")]
 public class ItemData : ScriptableObject
 {
-    // ScriptableObject = §â¸ê®Æª«¥ó¤Æ
+    // ScriptableObject = æŠŠè³‡æ–™ç‰©ä»¶åŒ–
     // public string userInput;
     // const string PlayerPrefsKey = "UserInputKey";
-    // ¦@¦P
-    [Header("¹D¨ãID")]
-    public int id;                      // ¹D¨ãID
-    [Header("¹D¨ã¦WºÙ")]
-    public string title;                // ¹D¨ã¼ĞÃD
-    [Header("¹D¨ã¹Ï¥Ü")]
-    public Sprite icon;                 // ¹D¨ã¹Ï¥Ü
-    [Header("¹D¨ã»¡©ú"), TextArea(5, 5)]
-    public string info;                 // ¹D¨ã±Ô­z
-    [Header("¹D¨ã¥i§_¨Ï¥Î")]
-    public bool canUse;                 // ¬O§_¥i¨Ï¥Î
-    [Header("¹D¨ã¬O§_·|®ø¯Ó")]
-    public bool Consumables;            // ¨Ï¥Î«á¬O§_·|®ø¯Ó
-    [Header("¹D¨ãÃC¦â")]
-    public Color category;              // Ãş§OªºÃC¦â
+    // å…±åŒ
+    [Header("é“å…·ID")]
+    public int id;                      // é“å…·ID
+    [Header("é“å…·åç¨±")]
+    public string title;                // é“å…·æ¨™é¡Œ
+    [Header("é“å…·åœ–ç¤º")]
+    public Sprite icon;                 // é“å…·åœ–ç¤º
+    [Header("é“å…·èªªæ˜"), TextArea(5, 5)]
+    public string info;                 // é“å…·æ•˜è¿°
+    [Header("é“å…·å¯å¦ä½¿ç”¨")]
+    public bool canUse;                 // æ˜¯å¦å¯ä½¿ç”¨
+    [Header("é“å…·æ˜¯å¦æœƒæ¶ˆè€—")]
+    public bool Consumables;            // ä½¿ç”¨å¾Œæ˜¯å¦æœƒæ¶ˆè€—
+    [Header("é“å…·é¡è‰²")]
+    public Color category;              // é¡åˆ¥çš„é¡è‰²
 
-    // ­Ó§O
-    // public float regainHp;   // ¦^¦å
-    // public float regainMp;   // ¸ÉÅ]
-    [Header("«ì´_Åé¤O­È")]
-    public float regainStr;     // ¦^Åé¤O
+    // å€‹åˆ¥
+    // public float regainHp;   // å›è¡€
+    // public float regainMp;   // è£œé­”
+    [Header("æ¢å¾©é«”åŠ›å€¼")]
+    public float regainStr;     // å›é«”åŠ›
 
-    // ¦b Awake ®É³]©w¹w³]­È
-    // ¦pªG¨Ï¥ÎªÌ¦³¿é¤J­È «hÅª¨ú¨Ï¥ÎªÌªº­È
-    // ¦pªG¨Ï¥ÎªÌ¨S¦³¿é¤J­È «h­È¬°¹w³]­È
+    // åœ¨ Awake æ™‚è¨­å®šé è¨­å€¼
+    // å¦‚æœä½¿ç”¨è€…æœ‰è¼¸å…¥å€¼ å‰‡è®€å–ä½¿ç”¨è€…çš„å€¼
+    // å¦‚æœä½¿ç”¨è€…æ²’æœ‰è¼¸å…¥å€¼ å‰‡å€¼ç‚ºé è¨­å€¼
     private void Awake()
     {
         SaveUserInput();
@@ -52,8 +52,8 @@ public class ItemData : ScriptableObject
         }
         else
         {
-            title = "¥¼©R¦W";
-            info = "µL±Ô­z";
+            title = "æœªå‘½å";
+            info = "ç„¡æ•˜è¿°";
             canUse = false;
             Consumables = false;
             regainStr = 0f;
@@ -61,25 +61,25 @@ public class ItemData : ScriptableObject
     }
 
     /// <summary>
-    /// Àx¦sª±®a©Ò¿é¤Jªº­È
+    /// å„²å­˜ç©å®¶æ‰€è¼¸å…¥çš„å€¼
     /// </summary>
-    /// <param name="iconBool">©Ò¿é¤Jªº¹Ï¥Ü</param>
-    /// <param name="canUseBool">©Ò¿é¤J¥i§_³Q¨Ï¥Î</param>
-    /// <param name="ConsumablesBool">©Ò¿é¤J¥i§_·|®ø¯Ó</param>
+    /// <param name="iconBool">æ‰€è¼¸å…¥çš„åœ–ç¤º</param>
+    /// <param name="canUseBool">æ‰€è¼¸å…¥å¯å¦è¢«ä½¿ç”¨</param>
+    /// <param name="ConsumablesBool">æ‰€è¼¸å…¥å¯å¦æœƒæ¶ˆè€—</param>
     public void SaveUserInput()
     {
         // userInput = value;
         // PlayerPrefs.SetString(PlayerPrefsKey, userInput);
-        // iconBool = icon == null ? 0 : 1;                       // ¦pªG canUse ¬° false Âà´«¬° 0 §_«h´N¬°1
-        // PlayerPrefs.SetInt("ItemIcon", iconBool);              // Àx¦s©Ò¿é¤Jªº¹D¨ã¹Ï¥Ü
-        PlayerPrefs.SetInt("ItemID", id);                         // Àx¦s©Ò¿é¤Jªº¹D¨ãID
-        PlayerPrefs.SetString("ItemTitle", title);                // Àx¦s©Ò¿é¤Jªº¹D¨ã¼ĞÃD
-        PlayerPrefs.SetString("ItemInfo", info);                  // Àx¦s©Ò¿é¤Jªº¹D¨ã±Ô­z
-        int canUseBool = canUse == false ? 0 : 1;                 // ¦pªG canUse ¬° false Âà´«¬° 0 §_«h´N¬°1
-        PlayerPrefs.SetInt("ItemCanUse", canUseBool);             // Àx¦s©Ò¿é¤Jªº¹D¨ã¥i§_¨Ï¥Î
-        int ConsumablesBool = Consumables == false ? 0 : 1;       // ¦pªG Consumables ¬° false Âà´«¬° 0 §_«h´N¬°1
-        PlayerPrefs.SetInt("ItemConsumables", ConsumablesBool);   // Àx¦s©Ò¿é¤Jªº¹D¨ã¬O§_·|®ø¯Ó
-        PlayerPrefs.SetFloat("ItemRegainStr", regainStr);         // Àx¦s©Ò¿é¤JªºÅé¤O«ì´_­È
+        // iconBool = icon == null ? 0 : 1;                       // å¦‚æœ canUse ç‚º false è½‰æ›ç‚º 0 å¦å‰‡å°±ç‚º1
+        // PlayerPrefs.SetInt("ItemIcon", iconBool);              // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·åœ–ç¤º
+        PlayerPrefs.SetInt("ItemID", id);                         // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·ID
+        PlayerPrefs.SetString("ItemTitle", title);                // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·æ¨™é¡Œ
+        PlayerPrefs.SetString("ItemInfo", info);                  // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·æ•˜è¿°
+        int canUseBool = canUse == false ? 0 : 1;                 // å¦‚æœ canUse ç‚º false è½‰æ›ç‚º 0 å¦å‰‡å°±ç‚º1
+        PlayerPrefs.SetInt("ItemCanUse", canUseBool);             // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·å¯å¦ä½¿ç”¨
+        int ConsumablesBool = Consumables == false ? 0 : 1;       // å¦‚æœ Consumables ç‚º false è½‰æ›ç‚º 0 å¦å‰‡å°±ç‚º1
+        PlayerPrefs.SetInt("ItemConsumables", ConsumablesBool);   // å„²å­˜æ‰€è¼¸å…¥çš„é“å…·æ˜¯å¦æœƒæ¶ˆè€—
+        PlayerPrefs.SetFloat("ItemRegainStr", regainStr);         // å„²å­˜æ‰€è¼¸å…¥çš„é«”åŠ›æ¢å¾©å€¼
 
         PlayerPrefs.Save();
     }

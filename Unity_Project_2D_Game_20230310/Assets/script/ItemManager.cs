@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¹D¨ãºŞ²z¾¹
+/// é“å…·ç®¡ç†å™¨
 /// </summary>
 public class ItemManager
 {
-    #region ³æ¨Ò
+    #region å–®ä¾‹
     public static ItemManager instance
     {
         get
@@ -19,22 +19,22 @@ public class ItemManager
     static ItemManager _instance = null;
     #endregion
 
-    // ±N©Ò¦³¹D¨ã©ñ¦b¤@­Ó°}¦C¤¤
+    // å°‡æ‰€æœ‰é“å…·æ”¾åœ¨ä¸€å€‹é™£åˆ—ä¸­
     public ItemData[] AllItem = new ItemData[0];
 
     /// <summary>
-    /// ªì©l¤Æ¹D¨ã¡G§â©Ò¦³¹D¨ã©ñ¶i¸ê®Æ®w¤º
+    /// åˆå§‹åŒ–é“å…·ï¼šæŠŠæ‰€æœ‰é“å…·æ”¾é€²è³‡æ–™åº«å…§
     /// </summary>
-    public void ªì©l¤Æ()
+    public void åˆå§‹åŒ–()
     {
-        // ±q±M®×¤¤§ä¥X©Ò¦³¹D¨ã¸ê®Æ
+        // å¾å°ˆæ¡ˆä¸­æ‰¾å‡ºæ‰€æœ‰é“å…·è³‡æ–™
         AllItem = Resources.LoadAll<ItemData>("");
     }
 
     /// <summary>
-    /// §ä¹D¨ã¸ê®Æ¡G¨Ì·ÓID´M§ä
+    /// æ‰¾é“å…·è³‡æ–™ï¼šä¾ç…§IDå°‹æ‰¾
     /// </summary>
-    /// <param name="id">¹D¨ã½s¸¹</param>
+    /// <param name="id">é“å…·ç·¨è™Ÿ</param>
     /// <returns></returns>
     public ItemData FindItemData(int id)
     {
@@ -45,7 +45,7 @@ public class ItemManager
                 return AllItem[i];
             }
         }
-        Debug.LogError("ID¡G" + id + "¬dµL¦¹ID");
+        Debug.LogError("IDï¼š" + id + "æŸ¥ç„¡æ­¤ID");
         return new ItemData();
     }
 }

@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
     ItemData dataGrid;
     bool isNoneGrid = true;
 
-    public void 輸入資料(SaveManager.Goods data)
+    public void 輸入資料(Goods data)
     {
         isNoneGrid = false;
         dataGrid = ItemManager.instance.FindItemData(data.id);
