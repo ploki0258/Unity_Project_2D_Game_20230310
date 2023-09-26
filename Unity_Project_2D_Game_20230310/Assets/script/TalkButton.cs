@@ -5,7 +5,7 @@ public class TalkButton : MonoBehaviour
     [SerializeField, Header("提示對話圖示")] public GameObject TipTalkIcon;
     [SerializeField, Header("角色對話文本")] 對話文本 lines;
     //public GameObject talkUI;
-
+    
     // 當 玩家 靠近NPC時 就顯示對話提示按鈕
     private void OnTriggerEnter2D(Collider2D collision)
     {
