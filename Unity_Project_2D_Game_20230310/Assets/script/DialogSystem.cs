@@ -21,9 +21,9 @@ public class DialogSystem : MonoBehaviour
     //[SerializeField, Header("提示對話圖示")] GameObject Button;
 
     對話文本 當前文本;
-    public bool 對話中 = false;    // 是否在對話
-    bool pressEnter = false;      // 是否按了繼續
-    bool wait = false;            // 是否在等待
+    public bool 對話中 = false;  // 是否在對話
+    bool pressEnter = false;    // 是否按了繼續
+    bool wait = false;          // 是否在等待
     
     private void Awake()
     {
@@ -104,7 +104,7 @@ public class DialogSystem : MonoBehaviour
             string textFinal = "";
             for (int i = 0; i < 當前文本.對話列表[j].文本內容.Length; i++)
             {
-                // 有幾個字跑記個迴圈
+                // 有幾個字跑幾個迴圈
                 textFinal = textFinal + 當前文本.對話列表[j].文本內容[i];
                 // 顯示到畫面上
                 對話內容.text = textFinal;
